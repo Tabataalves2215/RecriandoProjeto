@@ -27,20 +27,96 @@ var engine = {
 
 }
 
+const audioMoeda = new Audio ('AUDIO/moeda.mp3');
+const audioErrou = new Audio ('AUDIO/errou.mp3');
+
 function sortearcor(){
 var indexCorSorteada = Math.floor (Math.random() *engine.cores.length);
 
 var legendaCorDaCaixa = document.getElementById('cor-na-caixa');
+var nomeCorSorteada =  engine.cores[indexCorSorteada];
 
-var nomeCorSorteada = legendaCorDaCaixa.innerText = engine.cores[indexCorSorteada]. engine.cores[indexCorSorteada];
-legendaCorDaCaixa.innerText = nomeDacor. toUppercase;
+
+legendaCorDaCaixa.innerText = nomeCorSorteada.toUpperCase();
 
 return engine.hexadecimais[nomeCorSorteada];
+
+
 }
+
 
 function aplicarCorNaCaixa(nomeDacor){
 var caixaDasCores = document.getElementById('cor-atual');
-caixaDasCores.style.backgroundColor = nomeDacor;
+
+caixaDasCores.style.backgroundColor = 'nomeDaCor';
+caixaDasCores.style.backgroundImage = "url('/IMG/caixa-fechada.png')";
+caixaDasCores.style.backgroundSize = "100%";
 
 }
+
+function atualizaPontuacao(valor){
+    var prontuacao = document.getElementById('pontuacao-atual');
+
+    engine.moedas += 1;
+
+    if(valor <0){
+    audioErrou.play();
+    }
+    
+    else{
+        audioMoeda.play();
+
+
+   }
+    
+    
+
+    prontuacao.innerText = engine.moedas;
+}
+
+aplicarCorNaCaixa(sortearcor)
+
+if(window.SpeechRecognition || window.webkitSpeechRecongnition){
+var speechAPI = window.SpeechRecognition || window.webkitSpeechRecongnition;
+var gravador = new speechAPI();
+
+
+gravador.continuos = false;
+gravador.lang = "en-US";
+
+gravador.onstart = function(){
+btnGravador.innerText = "Estou Ouvindo";
+btnGravador.style.backgroundColor = "white";
+btnGravador.style.color = "black";
+
+}
+
+gravador.onend = function(){
+    btnGravador.innerText = "Responder";
+    btnGravador.style.backgroundColor = "transparent";
+    btnGravador.style.color = "white";
+     
+}
+
+gravador.onresult = function(event){
+    console.log(event);
+   transcricaoAudio = event.result[0][0].transcript.toUpperCase()
+   respontaCorreta = document.getElementById('cor-na-caixa').innerText.toUpperCase();
+
+   if(transcricaoAudio=== respontaCorreta){
+       atualizaPontuacao(1);
+   }else{
+       atualizaPontuacao(-1);
+   }
+   aplicarCorNaCaixa(sortearcor);
+}
+
+
+
+}else{
+alert('não tem suporte');
+}
+
+btnGravador.addEventListener()
+
 

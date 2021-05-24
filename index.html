@@ -7,14 +7,17 @@
 
     <link rel="stylesheet" href="CSS/style.css">
     <title>Jogo do Mario</title>
+ <link rel="shortcut icon" href="IMG/icone.png" type="image/x-icon">
 </head>
 <body>
-   <div id="container"></div>
+   <div id="container">
       <header id="cabecalho-principal">
-      <img src="IMG/moedas.png" height="30px" alt=""> 
-     <div id="pontuacao-game"> </div>
-     moedas: 0
-
+     <div id="pontuacao-game">
+        <img src="IMG/moedas.png" height="30px" alt="" srcset="">
+        Moedas:&nbsp;&nbsp;<span id="pontuacao-atual">0</span>
+     </div>
+      
+     
      <div id="nome-jogo">
          Super Mario english Challenge
      </div>
@@ -23,8 +26,9 @@
 
       <section id="corpo"> 
       <div id= "esquerda">
+
    <h3>FALE O NOME DA COR EM INGLÊS</h3>
-   <span id="cor-na-caixa">Yellow</span>
+   <span id="cor-na-caixa"></span>
 
    <div id="cor-atual">
 
@@ -32,18 +36,16 @@
 
    <button id="btn-responder">RESPONDER</button>
       </div>
+      
       <div id="direita">
           <img src="img/Mario.png" height="390px" alt="" srcset="">
+    </div>
 
-      </div>
-
-
-      </section>
+     </section>
 
       <footer id="rodape">
-          <img src="img/logo-dio.png" alt="" srcset="">
-
-      </footer>
+        <img src="img/logo-dio.png" height="90px" alt="" srcset="">
+    </footer>
 
       <script src="js/fuccions.js"></script>
 </body>
