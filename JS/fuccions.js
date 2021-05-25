@@ -46,7 +46,7 @@ return engine.hexadecimais[nomeCorSorteada];
 
 
 function aplicarCorNaCaixa(nomeDacor){
-var caixaDasCores = document.getElementById('cor-atual');
+var caixaDasCores = document.getElementById("cor-na-caixa");
 
 caixaDasCores.style.backgroundColor = 'nomeDaCor';
 caixaDasCores.style.backgroundImage = "url('/IMG/caixa-fechada.png')";
@@ -74,7 +74,12 @@ function atualizaPontuacao(valor){
     prontuacao.innerText = engine.moedas;
 }
 
-aplicarCorNaCaixa(sortearcor)
+aplicarCorNaCaixa(sortearcor);
+//API de reconhecimento de voz
+
+var btnGravador = document.getElementById("btn-responder");
+var transcricaoAudio = "";
+var respostaCorreta =  "";
 
 if(window.SpeechRecognition || window.webkitSpeechRecongnition){
 var speechAPI = window.SpeechRecognition || window.webkitSpeechRecongnition;
@@ -103,12 +108,16 @@ gravador.onresult = function(event){
    transcricaoAudio = event.result[0][0].transcript.toUpperCase()
    respontaCorreta = document.getElementById('cor-na-caixa').innerText.toUpperCase();
 
+   console.log(transcricaoAudio);
+   console.log(respostaCorreta);
+
+
    if(transcricaoAudio=== respontaCorreta){
        atualizaPontuacao(1);
    }else{
        atualizaPontuacao(-1);
    }
-   aplicarCorNaCaixa(sortearcor);
+   aplicarCorNaCaixa(sortearcor));
 }
 
 
@@ -117,6 +126,6 @@ gravador.onresult = function(event){
 alert('não tem suporte');
 }
 
-btnGravador.addEventListener()
+btnGravador.addEventListener('click', function(e){
 
-
+}
